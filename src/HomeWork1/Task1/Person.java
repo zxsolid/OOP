@@ -1,21 +1,25 @@
 package HomeWork1.Task1;
 
-public class Person {
-    private enum Sex {
-        man, woman, none
-    }
+import java.util.Calendar;
 
+public class Person {
     private String fullName;
     private Sex sex;
-
+    private String birthday;
 
     public Person(String fullName) {
-        this(fullName, Sex.none);
+        this(fullName, Sex.none, "-");
     }
 
-    public Person(String fullName, Sex sex) {
+    public Person(String fullName, String birthday) {
+        this(fullName, Sex.none, birthday);
+
+    }
+
+    public Person(String fullName, Sex sex, String birthday) {
         this.fullName = fullName;
         this.sex = sex;
+        this.birthday = birthday;
     }
 
     public String getFullName() {

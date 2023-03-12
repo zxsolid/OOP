@@ -1,12 +1,11 @@
 package HomeWork1.Task2_3;
-public class Item {
-    private String name; //название
+public class Item extends BaseItem {
 
     public Item(String name) {
-        this.name = name;
+        this.description = name;
     }
 
     public String getName() {
-        return name;
+        return description;
     }
 }
