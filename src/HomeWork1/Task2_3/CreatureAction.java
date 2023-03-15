@@ -7,4 +7,5 @@ public interface CreatureAction {
     void eat(Integer meal);
     void reaction();
     void reply();
+    void call(BaseCreature obg);
 }

@@ -1,14 +1,18 @@
 package HomeWork1.Task1;
 
-import java.util.Calendar;
+import java.util.Objects;
 
 public class Person {
-    private String fullName;
-    private Sex sex;
-    private String birthday;
+    private final String fullName;
+    private final Sex sex;
+    private final String birthday;
 
-    public Person(String fullName) {
-        this(fullName, Sex.none, "-");
+    public Sex getSex() {
+        return sex;
+    }
+
+    public String getBirthday() {
+        return birthday;
     }
 
     public Person(String fullName, String birthday) {
@@ -24,5 +28,30 @@ public class Person {
 
     public String getFullName() {
         return fullName;
+    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        return (this.fullName.equals(((Person) o).getFullName())&&
+                this.sex==((Person) o).getSex()) &&
+                this.birthday.equals(((Person) o).getBirthday());
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder(fullName).append(" ");
+        switch (sex){
+            case woman -> result.append("(ж.)");
+            case man -> result.append("(м.)");
+        }
+        result.append(String.format("[%s]",birthday));
+        return result.toString();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(fullName, sex, birthday);
     }
 }

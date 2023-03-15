@@ -1,5 +1,5 @@
 package HomeWork1.Task1;
 
-public interface Loaded<T> {
-    T load();
+interface Loaded {
+    boolean load(String filename);
 }
