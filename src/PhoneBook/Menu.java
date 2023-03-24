@@ -46,9 +46,11 @@ public class Menu {
     private String stopLiter;
     private String stopDescription;
     private String menuName;
+    private View view;
 
-    public Menu(String name) {
+    public Menu(String name, View view) {
         clear(name);
+        this.view = view;
     }
 
     public void clear(String name) {
@@ -74,17 +76,17 @@ public class Menu {
             if (key.equals(stopLiter)) return;//выход из меню
             for (MenuItem i : menuItems) {
                 if (i.getLiter().equals(key)) {
-                    System.out.println();
+                    view.print();
                     i.run();//запуск задачи из пункта меню
-                    System.out.println("");
+                    view.print("");
                 }
             }
         }
     }
 
     private void print() { //вывод текста меню
-        System.out.println(menuName);
-        List<MenuItem> list = new ArrayList<MenuItem>(menuItems);
+        view.println(menuName);
+        List<MenuItem> list = new ArrayList<>(menuItems);
         Collections.sort(list);
         for (MenuItem i : list) {
             System.out.print(i);

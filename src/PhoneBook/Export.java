@@ -6,12 +6,13 @@ import java.io.ObjectOutputStream;
 import java.util.Arrays;
 import java.util.Collections;
 
+
 public class Export extends Import_Export {
-    public Export(Phone_Book_Storage pb, String filename) {
-        super(pb, filename);
+    public Export(Phone_Book_Storage pb, String filename,View view) {
+        super(pb, filename,view);
     }
 
-    boolean savePhonebook(FileType fileType) {
+    public boolean savePhonebook(FileType fileType) {
         switch (fileType) {
             case csv -> {
                 return saveToCSV();
@@ -43,7 +44,7 @@ public class Export extends Import_Export {
             outputStream.write(content.toString().getBytes());
             return true;
         } catch (IOException e) {
-            System.out.println("Ошибка при записи данных\n" + Arrays.toString(e.getStackTrace()));
+            view.println("Ошибка при записи данных\n" + Arrays.toString(e.getStackTrace()));
             return false;
         }
     }
@@ -52,9 +53,10 @@ public class Export extends Import_Export {
         String fileName = filename + ".html";
         if (validateFilename(fileName)) return false;
         String templateHeader = """
-                <HTML>
+                <HTML lang="ru-RU">
                 <HEAD>
                 <TITLE>Телефонный справочник</TITLE>
+                <meta charSet="utf-8"/>
                 </HEAD>
                 <body>
                 <p>Телефонный справочник.</p>
@@ -78,7 +80,7 @@ public class Export extends Import_Export {
             outputStream.write(contentHTML.toString().getBytes());
             return true;
         } catch (IOException e) {
-            System.out.println("Ошибка при записи данных\n" + Arrays.toString(e.getStackTrace()));
+            view.println("Ошибка при записи данных\n" + Arrays.toString(e.getStackTrace()));
             return false;
         }
     }
@@ -94,7 +96,7 @@ public class Export extends Import_Export {
             //закрываем поток и освобождаем ресурсы
             objectOutputStream.close();
         } catch (IOException e) {
-            System.out.println("Ошибка при записи данных\n" + Arrays.toString(e.getStackTrace()));
+            view.println("Ошибка при записи данных\n" + Arrays.toString(e.getStackTrace()));
             return false;
         }
         return true;

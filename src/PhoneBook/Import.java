@@ -5,8 +5,8 @@ import java.io.ObjectInputStream;
 import java.util.Arrays;
 
 public class Import extends Import_Export {
-    public Import(Phone_Book_Storage pb, String filename) {
-        super(pb, filename);
+    public Import(Phone_Book_Storage pb, String filename, View view) {
+        super(pb, filename, view);
     }
 
     public boolean loadPhonebook() {
@@ -19,7 +19,7 @@ public class Import extends Import_Export {
             pb.setPoolRecords(data.getData());
             return true;
         } catch (Exception e) {
-            System.out.println("Ошибка чтения файла.\n" + Arrays.toString(e.getStackTrace()));
+            view.println("Ошибка чтения файла.\n" + Arrays.toString(e.getStackTrace()));
             return false;
         }
     }
